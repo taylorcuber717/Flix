@@ -1,9 +1,8 @@
 //
-//  MovieCellTableViewCell.swift
-//  Flix
+//  MovieCell.swift
+//  
 //
-//  Created by Taylor McLaughlin on 9/10/18.
-//  Copyright © 2018 Taylor McLaughlin. All rights reserved.
+//  Created by Taylor McLaughlin on 9/12/18.
 //
 
 import UIKit
