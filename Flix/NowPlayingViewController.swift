@@ -52,6 +52,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: 0)
         
+        fetchMovies()
+        
+    }
+    
+    func fetchMovies() {
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -70,7 +76,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         task.resume()
-        
         
     }
     

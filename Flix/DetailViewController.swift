@@ -23,10 +23,17 @@ class DetailViewController: UIViewController {
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     
+    @IBAction func onTap(sender: UITapGestureRecognizer)
+    {
+        self.performSegue(withIdentifier: "GetTrailer", sender: nil)
+    }
+    
+    
     var movie: [String: Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        posterImageView.isUserInteractionEnabled = true
         
         if let movie = movie {
             titleLabel.text = movie[MovieKeys.title] as? String
@@ -42,6 +49,12 @@ class DetailViewController: UIViewController {
             let posterPathURL = URL(string: baseURLString + posterPathString)!
             posterImageView.af_setImage(withURL: posterPathURL)
         }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let trailerViewController = segue.destination as! TrailerViewController
+        trailerViewController.movie = movie
         
     }
 

@@ -7,8 +7,7 @@ target 'Flix' do
 
   # Pods for Flix
   pod 'AlamofireImage', '~> 3.3'
-  pod 'SVProgressHUD'
-  pod 'NVActivityIndicatorView'
+  pod 'YouTuBePlayer-Swift', '-> 1.0'
 
   target 'FlixUITests' do
     inherit! :search_paths
