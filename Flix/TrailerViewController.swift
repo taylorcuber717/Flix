@@ -45,7 +45,9 @@ class TrailerViewController: UIViewController {
                     let player = AVPlayer(url: trailerURL as URL)
                     
                     let playerLayer = AVPlayerLayer(player: player)
+                    print(trailerURLString)
                     self.trailerPlayerView.layer.addSublayer(playerLayer)
+                    playerLayer.frame = self.trailerPlayerView.frame
                     self.trailerPlayerView.isHidden = false
                     player.play()
                 }
