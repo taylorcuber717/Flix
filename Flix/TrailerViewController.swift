@@ -14,12 +14,10 @@ class TrailerViewController: UIViewController {
     var movie: [String: Any]?
     var trailers: [[String: Any]]?
     
-    @IBOutlet var trailerPlayerView: UIView!
+    @IBOutlet var trailerWebView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        trailerPlayerView.backgroundColor = UIColor.blue
-        trailerPlayerView.isHidden = false
         fetchTrailers()
 
         // Do any additional setup after loading the view.
@@ -41,16 +39,11 @@ class TrailerViewController: UIViewController {
                 self.trailers = trailers
                 let trailer = self.trailers![0]
                 let trailerURLString = "https://www.youtube.com/watch?v=\(trailer["key"]!)"
-                if let trailerURL = NSURL(string: trailerURLString) {
-                    let player = AVPlayer(url: trailerURL as URL)
-                    
-                    let playerLayer = AVPlayerLayer(player: player)
-                    print(trailerURLString)
-                    self.trailerPlayerView.layer.addSublayer(playerLayer)
-                    playerLayer.frame = self.trailerPlayerView.frame
-                    self.trailerPlayerView.isHidden = false
-                    player.play()
+                if let trailerURL = URL(string: trailerURLString) {
+                    let trailerRequest = URLRequest(url: trailerURL)
+                    self.trailerWebView.loadRequest(trailerRequest)
                 }
+                  
                 
                 
             }

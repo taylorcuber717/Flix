@@ -15,7 +15,7 @@ enum MovieKeys {
     static let posterPath = "poster_path"
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var backDropImageView: UIImageView!
     @IBOutlet var posterImageView: UIImageView!
@@ -28,12 +28,13 @@ class DetailViewController: UIViewController {
         self.performSegue(withIdentifier: "GetTrailer", sender: nil)
     }
     
-    
     var movie: [String: Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         posterImageView.isUserInteractionEnabled = true
+        
+        setUpScrollView()
         
         if let movie = movie {
             titleLabel.text = movie[MovieKeys.title] as? String
@@ -50,6 +51,19 @@ class DetailViewController: UIViewController {
             posterImageView.af_setImage(withURL: posterPathURL)
         }
         
+    }
+    
+    func setUpScrollView() {
+        let scrollView = UIScrollView(frame: view.bounds)
+        scrollView.delegate = self
+        view.addSubview(scrollView)
+        scrollView.contentSize = view.bounds.size
+        scrollView.isUserInteractionEnabled = true
+        backDropImageView.isUserInteractionEnabled = true
+        posterImageView.isUserInteractionEnabled = true
+        titleLabel.isUserInteractionEnabled = true
+        releaseDateLabel.isUserInteractionEnabled = true
+        overviewLabel.isUserInteractionEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
