@@ -34,8 +34,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         posterImageView.isUserInteractionEnabled = true
         
-        setUpScrollView()
-        
         if let movie = movie {
             titleLabel.text = movie[MovieKeys.title] as? String
             releaseDateLabel.text = movie["release_date"] as? String
@@ -51,19 +49,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             posterImageView.af_setImage(withURL: posterPathURL)
         }
         
-    }
-    
-    func setUpScrollView() {
-        let scrollView = UIScrollView(frame: view.bounds)
-        scrollView.delegate = self
-        view.addSubview(scrollView)
-        scrollView.contentSize = view.bounds.size
-        scrollView.isUserInteractionEnabled = true
-        backDropImageView.isUserInteractionEnabled = true
-        posterImageView.isUserInteractionEnabled = true
-        titleLabel.isUserInteractionEnabled = true
-        releaseDateLabel.isUserInteractionEnabled = true
-        overviewLabel.isUserInteractionEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
