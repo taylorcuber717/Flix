@@ -22,32 +22,26 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
+    var movie: Movie?
     
     @IBAction func onTap(sender: UITapGestureRecognizer)
     {
         self.performSegue(withIdentifier: "GetTrailer", sender: nil)
     }
-    
-    var movie: [String: Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         posterImageView.isUserInteractionEnabled = true
         
-        if let movie = movie {
-            titleLabel.text = movie[MovieKeys.title] as? String
-            releaseDateLabel.text = movie["release_date"] as? String
-            overviewLabel.text = movie["overview"] as? String
-            let backdropPathString = movie[MovieKeys.backdropPath] as! String
-            let posterPathString = movie[MovieKeys.posterPath] as! String
-            let baseURLString = "https://image.tmdb.org/t/p/w500"
-            
-            let backdropURL = URL(string: baseURLString + backdropPathString)!
-            backDropImageView.af_setImage(withURL: backdropURL)
-            
-            let posterPathURL = URL(string: baseURLString + posterPathString)!
-            posterImageView.af_setImage(withURL: posterPathURL)
-        }
+        
+        titleLabel.text = movie!.title
+        releaseDateLabel.text = movie!.releaseDateLabel
+        overviewLabel.text = movie!.overview
+        let backdropURL = movie!.backdropURL
+        backDropImageView.af_setImage(withURL: backdropURL!)
+        let posterPathURL = movie!.posterUrl
+        posterImageView.af_setImage(withURL: posterPathURL!)
+        
         
     }
     

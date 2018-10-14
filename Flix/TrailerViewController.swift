@@ -11,7 +11,7 @@ import AVFoundation
 
 class TrailerViewController: UIViewController {
     
-    var movie: [String: Any]?
+    var movie: Movie?
     var trailers: [[String: Any]]?
     
     @IBOutlet var trailerWebView: UIWebView!
@@ -25,7 +25,7 @@ class TrailerViewController: UIViewController {
     
     func fetchTrailers() {
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movie!["id"]!)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(String(describing: movie!.id))/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US")!
         
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
